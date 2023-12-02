@@ -5,7 +5,7 @@ import { useState } from "react";
 // 참조값을 직접 바꾸면 안되고 참조값을 통해 새로운 상태를 만들어줘야 한다.
 
 const Mentor = () => {
-  const [info, setInfo] = useState({
+  const [person, setPerson] = useState({
     userName: "재환",
     useTitle: "개발자",
     mentors: [
@@ -21,9 +21,9 @@ const Mentor = () => {
   const changeMentorName = () => {
     const inputName = prompt("변경 할 멘토의 이름을 입력하세요");
     const changeName = prompt("멘토의 이름을 무엇으로 변경하시겠습니까?");
-    setInfo((info) => ({
-      ...info,
-      mentors: info.mentors.map((mentor) => {
+    setPerson((person) => ({
+      ...person,
+      mentors: person.mentors.map((mentor) => {
         if (mentor.name === inputName) {
           return { ...mentor, name: changeName };
         }
@@ -36,9 +36,9 @@ const Mentor = () => {
   const changeMentorTitle = () => {
     const inputName = prompt("변경 할 멘토의 이름을 입력하세요");
     const changeTitle = prompt("멘토의 타이틀을 무엇으로 변경하시겠습니가?");
-    setInfo((info) => ({
-      ...info,
-      mentors: info.mentors.map((mentor) => {
+    setPerson((person) => ({
+      ...person,
+      mentors: person.mentors.map((mentor) => {
         if (mentor.name === inputName) {
           return { ...mentor, title: changeTitle };
         }
@@ -51,26 +51,26 @@ const Mentor = () => {
   const createMentor = () => {
     const inputName = prompt("추가 할 멘토의 이름을 입력하세요.");
     const inputTitle = prompt("추가 할 멘토의 타이틀을 입력하세요.");
-    setInfo((info) => ({
-      ...info,
-      mentors: [...info.mentors, { name: inputName, title: inputTitle }],
+    setPerson((person) => ({
+      ...person,
+      mentors: [...person.mentors, { name: inputName, title: inputTitle }],
     }));
   };
 
   // 멘토 삭제하기
   const deleteMentor = () => {
     const selectMentor = prompt("삭제 할 멘토의 이름을 입력해주세요.");
-    setInfo((info) => ({
-      ...info,
-      mentors: info.mentors.filter((mentor) => mentor.name !== selectMentor),
+    setPerson((person) => ({
+      ...person,
+      mentors: person.mentors.filter((mentor) => mentor.name !== selectMentor),
     }));
   };
   return (
     <div>
-      <h1>{info.userName}이는 개발자</h1>
-      <p>{info.userName}의 멘토는 : </p>
+      <h1>{person.userName}이는 개발자</h1>
+      <p>{person.userName}의 멘토는 : </p>
       <ul>
-        {info.mentors.map((mentor, index) => (
+        {person.mentors.map((mentor, index) => (
           <li key={index}>
             {mentor.name} ({mentor.title})
           </li>
