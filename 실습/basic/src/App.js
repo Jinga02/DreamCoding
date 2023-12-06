@@ -1,10 +1,10 @@
 import React from "react";
-import Form from "./component/Form";
+import Children from "./component/Children";
 
 export default function App() {
   return (
     <>
-      <Form />
+      <Children />
     </>
   );
 }
