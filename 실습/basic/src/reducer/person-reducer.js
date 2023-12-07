@@ -1,37 +1,32 @@
-function personReducer(person, action) {
+export default function personReducer(person, action) {
   switch (action.type) {
-    case "updated": {
-      const { inputName, changeName } = action;
+    case 'updated': {
+      const { prev, current } = action;
       return {
         ...person,
         mentors: person.mentors.map((mentor) => {
-          if (mentor.name === inputName) {
-            return { ...mentor, name: changeName };
+          if (mentor.name === prev) {
+            return { ...mentor, name: current };
           }
           return mentor;
         }),
       };
     }
-    case "add": {
-      const { inputName, inputTitle } = action;
+    case 'added': {
+      const { name, title } = action;
       return {
         ...person,
-        mentors: [...person.mentors, { name: inputName, title: inputTitle }],
+        mentors: [...person.mentors, { name, title }],
       };
     }
-    case "deleted": {
-      const { selectMentor } = action;
+    case 'deleted': {
       return {
         ...person,
-        mentors: person.mentors.filter(
-          (mentor) => mentor.name !== selectMentor,
-        ),
+        mentors: person.mentors.filter((mentor) => mentor.name !== action.name),
       };
     }
     default: {
-      throw Error(`알수없는 액션 타입입니다 : ${action.type}`);
+      throw Error(`알수없는 액션 타입이다: ${action.type}`);
     }
   }
 }
-
-export default personReducer;
