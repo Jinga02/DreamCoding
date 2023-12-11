@@ -6,6 +6,9 @@ const TodoList = () => {
     { id: "1", text: "장 보기", status: "active" },
   ]);
 
+  const addTodo = (todo) => {
+    setTodos([...todos, todo]);
+  };
   return (
     <div>
       <ul>
@@ -13,6 +16,7 @@ const TodoList = () => {
           <li key={todo.id}>{todo.text}</li>
         ))}
       </ul>
+      <AddTodo onAdd={addTodo} />
     </div>
   );
 };
