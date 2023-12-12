@@ -2,19 +2,23 @@
 
 ## Components 폴더
 
-    - TodoList.jsx : TodoList를 출력하는 컴포넌트
-
-    - TodoItem.jsx : TodoList의 Item 하나하나를 보여주는 컴포넌트
-
-    - InputTodo.jsx : Todo 입력창 컴포넌트
-
-    - CategoryTodo.jsx : Todo 카테고리를 표현 할 컴포넌트
-
-    - AllTodo.jsx : 모든 Todo를 담을 컴포넌트
+### Header 폴더
 
     - ActiveTodo.jsx : 진행 중인 Todo를 담을 컴포넌트
 
     - CompletedTodo.jsx : 완료된 Todo를 담을 컴포넌트
+
+### TodoList 폴더
+
+    - TodoList.jsx : TodoList를 출력하는 컴포넌트
+
+    - TodoItem.jsx : TodoList의 Item 하나하나를 보여주는 컴포넌트
+
+    - AddTodo.jsx : Todo 입력창 컴포넌트
+
+    - DeleteTodo.jsx : Todo 삭제 컴포넌트
+
+    - UpdateTodo.jsx : Todo 상태 변경 컴포넌트
 
     - ChangeTheme.jsx : 다크모드 변경 컴포넌트
 
