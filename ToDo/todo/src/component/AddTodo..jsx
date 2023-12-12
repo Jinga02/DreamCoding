@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { v4 as uuidv4 } from "uuid";
 const AddTodo = ({ onAdd }) => {
   const [todo, setTodo] = useState("");
   const handleChange = (e) => {
@@ -7,12 +7,14 @@ const AddTodo = ({ onAdd }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAdd({ id: "1", text: todo, status: "active" });
+    if (todo.trim().length > 0) {
+      onAdd({ id: uuidv4(), text: todo, status: "active" });
+    }
     setTodo("");
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input value={todo} onChange={handleChange} />
+      <input value={todo} onChange={handleChange} placeholder="Add Todo" />
       <button>ADD</button>
     </form>
   );
