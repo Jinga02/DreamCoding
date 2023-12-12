@@ -1,8 +1,9 @@
 import { useState } from "react";
-import AddTodo from "../AddTodo.";
-import TodoItem from "./TodoItem";
 
-const TodoList = () => {
+import TodoItem from "./TodoItem";
+import AddTodo from "./AddTodo.";
+
+const TodoList = ({ filter }) => {
   const [todos, setTodos] = useState([
     { id: "1", text: "장 보기", status: "active" },
   ]);
@@ -22,10 +23,19 @@ const TodoList = () => {
   const handleDelete = (todoId) => {
     setTodos(todos.filter((todo) => todo.id !== todoId));
   };
+
+  const handleFilter = (todos, filter) => {
+    if (filter === "all") {
+      return todos;
+    }
+    return todos.filter((todo) => todo.status === filter);
+  };
+
+  const filterdTodo = handleFilter(todos, filter);
   return (
     <div>
       <ul>
-        {todos.map((todo) => (
+        {filterdTodo.map((todo) => (
           <TodoItem
             key={todo.id}
             todo={todo}

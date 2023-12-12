@@ -8,7 +8,7 @@ const UpdateTodo = ({ todo, onUpdate }) => {
     <>
       <input
         type="checkbox"
-        onClick={updateTodo}
+        onChange={updateTodo}
         checked={todo.status === "completed"}
       />
     </>
