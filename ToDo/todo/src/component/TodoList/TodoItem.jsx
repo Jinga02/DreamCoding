@@ -1,12 +1,14 @@
-import DeleteTodo from "./\bDeleteTodo";
+import DeleteTodo from "./DeleteTodo";
+import UpdateTodo from "./UpdateTodo";
 
-const TodoItem = ({ todo, onDelete }) => {
+const TodoItem = ({ todo, onDelete, onUpdate }) => {
   return (
     <>
-      <p>
+      <li>
+        <UpdateTodo todo={todo} onUpdate={onUpdate} />
         {todo.text}
         <DeleteTodo todoId={todo.id} onDelete={onDelete} />
-      </p>
+      </li>
     </>
   );
 };

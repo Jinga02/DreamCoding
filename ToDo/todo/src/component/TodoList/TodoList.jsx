@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AddTodo from "../AddTodo.";
-import DeleteTodo from "./\bDeleteTodo";
 import TodoItem from "./TodoItem";
 
 const TodoList = () => {
@@ -12,16 +11,27 @@ const TodoList = () => {
   const addTodo = (todo) => {
     setTodos([...todos, todo]);
   };
-
+  // todo 업데이트
+  const handleUpdate = (updatedTodo) => {
+    setTodos(
+      todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo)),
+    );
+    console.log(updatedTodo);
+  };
   // todo 삭제
-  const deleteTodo = (todoId) => {
+  const handleDelete = (todoId) => {
     setTodos(todos.filter((todo) => todo.id !== todoId));
   };
   return (
     <div>
       <ul>
         {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} onDelete={deleteTodo} />
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+          />
         ))}
       </ul>
       <AddTodo onAdd={addTodo} />
