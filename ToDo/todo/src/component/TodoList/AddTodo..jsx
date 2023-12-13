@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./AddTodo.module.css";
 import { v4 as uuidv4 } from "uuid";
 const AddTodo = ({ onAdd }) => {
   const [todo, setTodo] = useState("");
@@ -13,9 +14,14 @@ const AddTodo = ({ onAdd }) => {
     setTodo("");
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input value={todo} onChange={handleChange} placeholder="Add Todo" />
-      <button>ADD</button>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <input
+        className={styles.input}
+        value={todo}
+        onChange={handleChange}
+        placeholder="Add Todo"
+      />
+      <button className={styles.button}>Add</button>
     </form>
   );
 };

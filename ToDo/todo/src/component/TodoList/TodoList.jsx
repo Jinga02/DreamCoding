@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import styles from "./TodoList.module.css";
 
-import TodoItem from "./TodoItem";
 import AddTodo from "./AddTodo.";
+import TodoItem from "./Todo/TodoItem";
 
 const TodoList = ({ filter }) => {
-  const [todos, setTodos] = useState([
-    { id: "1", text: "장 보기", status: "active" },
-  ]);
+  // 콜백함수로 감싸지 않으면 리렌더링이 일어날때마다 함수가 호출되서 불필요한 동작을 한다
+  const [todos, setTodos] = useState(() => readTodosFromLocalStroage());
 
   // todo 추가
   const addTodo = (todo) => {
@@ -31,10 +31,13 @@ const TodoList = ({ filter }) => {
     return todos.filter((todo) => todo.status === filter);
   };
 
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
   const filterdTodo = handleFilter(todos, filter);
   return (
-    <div>
-      <ul>
+    <section className={styles.container}>
+      <ul className={styles.list}>
         {filterdTodo.map((todo) => (
           <TodoItem
             key={todo.id}
@@ -45,7 +48,12 @@ const TodoList = ({ filter }) => {
         ))}
       </ul>
       <AddTodo onAdd={addTodo} />
-    </div>
+    </section>
   );
 };
 export default TodoList;
+
+const readTodosFromLocalStroage = () => {
+  const todos = localStorage.getItem("todos");
+  return todos ? JSON.parse(todos) : [];
+};
