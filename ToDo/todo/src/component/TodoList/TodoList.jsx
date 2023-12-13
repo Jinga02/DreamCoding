@@ -51,6 +51,7 @@ const TodoList = ({ filter }) => {
     </section>
   );
 };
+
 export default TodoList;
 
 const readTodosFromLocalStroage = () => {
